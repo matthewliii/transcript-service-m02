@@ -4,17 +4,18 @@
   "description": "Transcript Service",
   "main": "index.js",
   "type": "module",
-  "scripts": {
-    "test": "jest --coverage",
-    "vitest": "vitest run  --coverage --watch=false",
-    "lint": "eslint src/**/*.ts",
-    "stryker": "stryker run",
-    "pack": "npm-pack-zip  --exclude *.zip",
-    "release": "npm-pack-zip --exclude *.zip --exclude module-02.test.ts --output foo.zip"
-  },
-  "author": "Mitch Wand",
+  "scripts": {},
+  "author": "Mitch Wand and Rob Simmons",
   "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-prettier": "^5.5.4",
+    "prettier": "^3.7.4",
     "typescript": "^5.9.3",
+    "typescript-eslint": "^8.50.0",
     "vitest": "^4.0.16"
   }
 }

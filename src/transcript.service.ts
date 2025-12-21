@@ -17,15 +17,15 @@ export interface TranscriptService {
 
 export class TranscriptDB implements TranscriptService {
   /** the list of transcripts in the database */
-  private transcripts: Transcript[] = [];
+  private _transcripts: Transcript[] = [];
 
   /** the last assigned student ID
    * @note Assumes studentID is Number
    */
-  private lastID: number;
+  private _lastID: number;
 
   constructor() {
-    this.lastID = 0;
+    this._lastID = 0;
   }
 
   /** Adds a new student to the database
@@ -33,9 +33,9 @@ export class TranscriptDB implements TranscriptService {
    * @returns {StudentID} - the newly-assigned ID for the new student
    */
   addStudent(newName: string): StudentID {
-    const newID = this.lastID++;
+    const newID = this._lastID++;
     const newStudent: Student = { studentID: newID, studentName: newName };
-    this.transcripts.push({ student: newStudent, grades: [] });
+    this._transcripts.push({ student: newStudent, grades: [] });
     return newID;
   }
 
@@ -44,7 +44,7 @@ export class TranscriptDB implements TranscriptService {
    * @returns list of studentIDs associated with that name
    */
   nameToIDs(studentName: string): StudentID[] {
-    return this.transcripts
+    return this._transcripts
       .filter(t => t.student.studentName === studentName)
       .map(t => t.student.studentID);
   }
@@ -55,7 +55,7 @@ export class TranscriptDB implements TranscriptService {
    * @returns the transcript for this ID
    */
   getTranscript(id: StudentID): Transcript {
-    const ret: Transcript | undefined = this.transcripts.find(t => t.student.studentID === id);
+    const ret: Transcript | undefined = this._transcripts.find(t => t.student.studentID === id);
     if (ret === undefined) {
       throw new Error('unknown ID');
     } else {
