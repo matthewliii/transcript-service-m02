@@ -10,7 +10,7 @@
     "prettier": "prettier --check **/*.ts",
     "test": "vitest run --coverage",
     "vitest": "vitest",
-    "vite": "vite serve client"
+    "vite": "vite serve frontend"
   },
   "author": "Mitch Wand and Rob Simmons",
   "devDependencies": {

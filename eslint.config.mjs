@@ -105,7 +105,7 @@ export default defineConfig([
     },
   },
   {
-    files: ['client/**/*.{ts,tsx}'],
+    files: ['{client,frontend}/**/*.{ts,tsx}'],
     rules: {
       '@typescript-eslint/naming-convention': [
         'error',
