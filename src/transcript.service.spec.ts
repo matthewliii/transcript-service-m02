@@ -43,3 +43,34 @@ describe('getTranscript', () => {
     expect(() => db.getTranscript(1)).toThrowError();
   });
 });
+
+describe('addGrade', () => {
+  it('should add a grade to the should add a courseGrade to the database', () => {
+    const id1 = db.addStudent('blair');
+    const courseGrade1 = { course: 'CS101', grade: 95 };
+    db.addGrade(id1, 'CS101', courseGrade1);
+    expect(db.getGrade(id1, 'CS101')).toEqual(95);
+  });
+
+  it('should throw an error when adding a grade for a non-existent student', () => {
+    expect(() => db.addGrade(1, 'CS101', { course: 'CS101', grade: 85 })).toThrowError();
+  });
+
+  // Two ways in which the addGrade function isn’t completely specified by the conditions of satisfaction given in lecture are whether adding more than one CourseGrade per student per course updates grade or throws error and whether addGrade updates transcript
+
+  it('should throw an error when adding a grade for a student for a course they already have a grade for', () => {
+    const id1 = db.addStudent('blair');
+    const courseGrade1 = { course: 'CS101', grade: 95 };
+    const courseGrade2 = { course: 'CS101', grade: 85 };
+    db.addGrade(id1, 'CS101', courseGrade1);
+    expect(() => db.addGrade(id1, 'CS101', courseGrade2)).toThrowError();
+  });
+
+  it('should update the transcript when a grade is added', () => {
+    const id1 = db.addStudent('blair');
+    const courseGrade1 = { course: 'CS101', grade: 95 };
+    db.addGrade(id1, 'CS101', courseGrade1);
+    const transcript = db.getTranscript(id1);
+    expect(transcript.grades).toContainEqual(courseGrade1);
+  });
+});
